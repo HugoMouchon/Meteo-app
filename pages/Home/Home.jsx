@@ -63,7 +63,7 @@ export function Home() {
                 {/* Composant qui affiche
                     - La température actuelle arrondi au nombre entier
                     - Le nom de la ville 
-                    - le label et le graphique correspondant au temps actuel (la fonction est dans "meteo-service.js")
+                    - le label et le graphique correspondant au temps actuel (la fonction 'getWeatherInterpretation' étant dans "meteo-service.js")
                 */}
                 <MeteoBasic
                     temperature={Math.round(currentWeather?.temperature)}

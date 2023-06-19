@@ -1,13 +1,14 @@
 import { Image, View } from "react-native";
 import { s } from "./MeteoBasic.style";
 import { Txt } from "../Txt/Txt";
+import { Clock } from "../Clock/Clock";
 
 // Composant qui affiche La ville, la température, l'heure, le temps, ainsi qu'une image représentant graphiquement le temps qu"il fait
-export function MeteoBasic({ temperature, city, interpretation   }) {
+export function MeteoBasic({ temperature, city, interpretation }) {
     return (
         <>
             <View style={s.clock}>
-                <Txt>Clock</Txt>
+                <Clock />
             </View>
 
             <Txt>{city}</Txt>
