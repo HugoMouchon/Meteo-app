@@ -8,22 +8,22 @@ export const s = StyleSheet.create({
     weather_label: {
         alignSelf: "flex-end",
         transform: [{ rotate: "-90deg" }],
+        fontSize: 20
     },
 
     image: {
         height: 90,
         width: 90,
-        backgroundColor: "white",
     },
 
     temperature_container: {
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: "baseline",
-        paddingTop: 50
+        alignItems: "center",
+        paddingTop: 40
     },
 
     temperature: {
-        fontSize: 70,
+        fontSize: 80,
     },
 });

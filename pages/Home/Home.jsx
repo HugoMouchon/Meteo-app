@@ -6,6 +6,7 @@ import { requestForegroundPermissionsAsync, getCurrentPositionAsync } from "expo
 import { MeteoAPI } from "../../api/meteo";
 import { Txt } from "../../components/Txt/Txt";
 import { MeteoBasic } from "../../components/MeteoBasic/MeteoBasic";
+import { getWeatherInterpretation } from "../../services/meteo-service";
 
 export function Home() {
 
@@ -13,6 +14,8 @@ export function Home() {
     const [coords, setCoords] = useState();
     // Etat qui permet de stocker les doonnées de l'API via les coordonnées de l'utilisateur
     const [weather, setWeather] = useState();
+    // Constante qui permet de stocker et de vérifier si "current_weather" existe dans le state.
+    const currentWeather = weather?.current_weather
 
     // Permet de changer la couleur de la NavigationBar d'Android
     useEffect(() => {
@@ -54,13 +57,22 @@ export function Home() {
         setWeather(weatherResponse);
     }
 
-    return (
+    return currentWeather ? (
         <>
             <View style={s.meteo_basic}>
-                <MeteoBasic/>
+                {/* Composant qui affiche
+                    - La température actuelle arrondi au nombre entier
+                    - Le nom de la ville 
+                    - le label et le graphique correspondant au temps actuel (la fonction est dans "meteo-service.js")
+                */}
+                <MeteoBasic
+                    temperature={Math.round(currentWeather?.temperature)}
+                    city="Todo"
+                    interpretation={getWeatherInterpretation(currentWeather.weathercode)}
+                />
             </View>
             <View style={s.searchbar_container}></View>
             <View style={s.meteo_advanced}></View>
         </>
-    );
+    ) : null
 }
