@@ -14,6 +14,8 @@ export function Home() {
     const [coords, setCoords] = useState();
     // Etat qui permet de stocker les doonnées de l'API via les coordonnées de l'utilisateur
     const [weather, setWeather] = useState();
+    // Etat qui permet de stocker la donnée de l'API (nom de la ville) via les coordonnées de l'utilisateur
+    const [city, setCity] = useState();
     // Constante qui permet de stocker et de vérifier si "current_weather" existe dans le state.
     const currentWeather = weather?.current_weather
 
@@ -27,10 +29,11 @@ export function Home() {
         getUserCoords();
     }, []);
 
-    // Permet de faire appel à la fonction fetchWeather chaque fois que les coordonnées changent.
+    // Permet de faire appel à la fonction fetchWeather et fetchCity chaque fois que les coordonnées changent.
     useEffect(() => {
         if (coords) {
             fetchWeather(coords)
+            fetchCity(coords)
         }
     }, [coords]);
 
@@ -57,6 +60,13 @@ export function Home() {
         setWeather(weatherResponse);
     }
 
+    // Fonction asynchrone (promesse, attente) qui permet de récuperer les données de l'API selon les coordonnées du téléphone
+    // Il stock en suite le npm de la ville dans le state "city".
+    async function fetchCity(coordinates) {
+        const cityResponses = await MeteoAPI.fetchCityFromCoords(coordinates);
+        setCity(cityResponses);
+    }
+
     return currentWeather ? (
         <>
             <View style={s.meteo_basic}>
@@ -67,7 +77,7 @@ export function Home() {
                 */}
                 <MeteoBasic
                     temperature={Math.round(currentWeather?.temperature)}
-                    city="Todo"
+                    city={city}
                     interpretation={getWeatherInterpretation(currentWeather.weathercode)}
                 />
             </View>

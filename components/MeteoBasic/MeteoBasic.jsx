@@ -3,7 +3,7 @@ import { s } from "./MeteoBasic.style";
 import { Txt } from "../Txt/Txt";
 import { Clock } from "../Clock/Clock";
 
-// Composant qui affiche La ville, la température, l'heure, le temps, ainsi qu'une image représentant graphiquement le temps qu"il fait
+// Composant qui affiche La ville, la température, l'heure, le label, ainsi qu'une image représentant graphiquement le temps qu"il fait.
 export function MeteoBasic({ temperature, city, interpretation }) {
     return (
         <>
@@ -11,7 +11,7 @@ export function MeteoBasic({ temperature, city, interpretation }) {
                 <Clock />
             </View>
 
-            <Txt>{city}</Txt>
+            <Txt style={s.city}>{city}</Txt>
 
             <Txt style={s.weather_label}>{interpretation.label}</Txt>
 
