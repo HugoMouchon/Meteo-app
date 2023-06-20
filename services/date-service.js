@@ -5,3 +5,5 @@ export function nowToHHMM() {
     const d = new Date();
     return `${d.getHours()}:${d.getMinutes().toString().padStart(2, 0)}`;
 }
+
+export const DAYS = ["LUN", "MAR", "MER", "JEU", "VEN", "SAM", "DIM"];
