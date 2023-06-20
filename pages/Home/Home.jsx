@@ -7,6 +7,7 @@ import { MeteoAPI } from "../../api/meteo";
 import { Txt } from "../../components/Txt/Txt";
 import { MeteoBasic } from "../../components/MeteoBasic/MeteoBasic";
 import { getWeatherInterpretation } from "../../services/meteo-service";
+import { MeteoAdvanced } from "../../components/MeteoAdvanced/MeteoAdvanced";
 
 export function Home() {
 
@@ -82,7 +83,9 @@ export function Home() {
                 />
             </View>
             <View style={s.searchbar_container}></View>
-            <View style={s.meteo_advanced}></View>
+            <View style={s.meteo_advanced}>
+                <MeteoAdvanced wind={currentWeather.windspeed} dusk={weather.daily.sunrise[0].split("T")[1]} down={weather.daily.sunset[0].split("T")[1]}/>
+            </View>
         </>
     ) : null
 }
