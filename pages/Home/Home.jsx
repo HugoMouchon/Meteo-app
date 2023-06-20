@@ -1,10 +1,9 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { s } from "./Home.style";
 import { useEffect, useState } from "react";
 import * as NavigationBar from 'expo-navigation-bar';
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync } from "expo-location";
 import { MeteoAPI } from "../../api/meteo";
-import { Txt } from "../../components/Txt/Txt";
 import { MeteoBasic } from "../../components/MeteoBasic/MeteoBasic";
 import { getWeatherInterpretation } from "../../services/meteo-service";
 import { MeteoAdvanced } from "../../components/MeteoAdvanced/MeteoAdvanced";
