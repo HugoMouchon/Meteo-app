@@ -7,6 +7,7 @@ import { MeteoAPI } from "../../api/meteo";
 import { MeteoBasic } from "../../components/MeteoBasic/MeteoBasic";
 import { getWeatherInterpretation } from "../../services/meteo-service";
 import { MeteoAdvanced } from "../../components/MeteoAdvanced/MeteoAdvanced";
+import { useNavigation } from "@react-navigation/native";
 
 export function Home() {
 
@@ -16,6 +17,8 @@ export function Home() {
     const [weather, setWeather] = useState();
     // Etat qui permet de stocker la donnée de l'API (nom de la ville) via les coordonnées de l'utilisateur
     const [city, setCity] = useState();
+
+    const nav = useNavigation();
     // Constante qui permet de stocker et de vérifier si "current_weather" existe dans le state.
     const currentWeather = weather?.current_weather
 
@@ -67,6 +70,10 @@ export function Home() {
         setCity(cityResponses);
     }
 
+    function goToForecastPage() {
+        nav.navigate("Forecast", { city, ...weather.daily })
+    }
+
     return currentWeather ? (
         <>
             <View style={s.meteo_basic}>
@@ -79,11 +86,12 @@ export function Home() {
                     temperature={Math.round(currentWeather?.temperature)}
                     city={city}
                     interpretation={getWeatherInterpretation(currentWeather.weathercode)}
+                    onPress={goToForecastPage}
                 />
             </View>
             <View style={s.searchbar_container}></View>
             <View style={s.meteo_advanced}>
-                <MeteoAdvanced wind={currentWeather.windspeed} dusk={weather.daily.sunrise[0].split("T")[1]} down={weather.daily.sunset[0].split("T")[1]}/>
+                <MeteoAdvanced wind={currentWeather.windspeed} dusk={weather.daily.sunrise[0].split("T")[1]} down={weather.daily.sunset[0].split("T")[1]} />
             </View>
         </>
     ) : null
