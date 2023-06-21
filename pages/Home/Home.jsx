@@ -8,6 +8,7 @@ import { MeteoBasic } from "../../components/MeteoBasic/MeteoBasic";
 import { getWeatherInterpretation } from "../../services/meteo-service";
 import { MeteoAdvanced } from "../../components/MeteoAdvanced/MeteoAdvanced";
 import { useNavigation } from "@react-navigation/native";
+import { SearchBar } from "../../components/SearchBar/SearchBar";
 
 export function Home() {
 
@@ -88,6 +89,9 @@ export function Home() {
                     interpretation={getWeatherInterpretation(currentWeather.weathercode)}
                     onPress={goToForecastPage}
                 />
+            </View>
+            <View>
+                <SearchBar />
             </View>
             <View style={s.searchbar_container}></View>
             <View style={s.meteo_advanced}>
