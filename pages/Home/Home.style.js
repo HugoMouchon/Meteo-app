@@ -8,6 +8,7 @@ export const s = StyleSheet.create({
 
     searchbar_container: {
         flex: 2,
+        paddingTop: 40,
     },
 
     meteo_advanced: {

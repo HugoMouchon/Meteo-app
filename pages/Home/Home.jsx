@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { Alert, View } from "react-native";
 import { s } from "./Home.style";
 import { useEffect, useState } from "react";
 import * as NavigationBar from 'expo-navigation-bar';
@@ -71,6 +71,15 @@ export function Home() {
         setCity(cityResponses);
     }
 
+    async function fetchCoordsByCity(city) {
+        try {
+            const coords = await MeteoAPI.fetchCoordsFromCity(city);
+            setCoords(coords);
+        } catch (e) {
+            Alert.alert("Oups !", e);
+        }
+    }
+
     function goToForecastPage() {
         nav.navigate("Forecast", { city, ...weather.daily })
     }
@@ -90,10 +99,9 @@ export function Home() {
                     onPress={goToForecastPage}
                 />
             </View>
-            <View>
-                <SearchBar />
+            <View style={s.searchbar_container}>
+                <SearchBar onSubmit={fetchCoordsByCity} />
             </View>
-            <View style={s.searchbar_container}></View>
             <View style={s.meteo_advanced}>
                 <MeteoAdvanced wind={currentWeather.windspeed} dusk={weather.daily.sunrise[0].split("T")[1]} down={weather.daily.sunset[0].split("T")[1]} />
             </View>
