@@ -2,7 +2,7 @@
 import { TextInput } from "react-native";
 import { s } from "./SearchBar.style";
 
-// Composant de barre de recherche
+// Composant de barre de recherche (afin de taper le nom d'une ville)
 export function SearchBar({ onSubmit }) {
     return (
         <TextInput

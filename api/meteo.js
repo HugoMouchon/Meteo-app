@@ -20,7 +20,7 @@ export class MeteoAPI {
         return city || village || town;
     }
 
-    // Permet de récupérer le nom de la ville.
+    // Permet de récupérer le nom de la ville tapé dans la barre de recherche par l'utilisateur
     static async fetchCoordsFromCity(city) {
         try {
             const { latitude: lat, longitude: lng } = (await axios.get(
